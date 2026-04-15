@@ -45,7 +45,9 @@ export default function Admin() {
     e.preventDefault();
     if (!keyOk) return;
     const token = generateToken();
-    const link = `${window.location.origin}/roleta/${token}`;
+    const base = import.meta.env.BASE_URL ?? "/";
+    const normalizedBase = base.endsWith("/") ? base : `${base}/`;
+    const link = `${window.location.origin}${normalizedBase}#/roleta/${token}`;
     setGeneratedLink(link);
   }
 
@@ -199,4 +201,3 @@ export default function Admin() {
     </div>
   );
 }
-
