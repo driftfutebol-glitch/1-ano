@@ -85,19 +85,23 @@ export const siteContent: SiteContent = {
   sliderIntervalMs: 4500,
   photos: [
     {
-      src: "https://coreva-normal.trae.ai/api/ide/v1/text_to_image?prompt=cinematic%20romantic%20couple%20silhouette%20at%20sunset%2C%20warm%20peach%20and%20rose%20color%20palette%2C%20soft%20film%20grain%2C%20bokeh%20lights%2C%20dreamy%20atmosphere%2C%20high%20detail%2C%20photoreal%2C%2085mm%2C%20natural%20light&image_size=landscape_16_9",
+      src:
+        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='20%25' r='90%25'%3E%3Cstop offset='0%25' stop-color='%23ffd1dc' stop-opacity='0.55'/%3E%3Cstop offset='45%25' stop-color='%23fb7185' stop-opacity='0.20'/%3E%3Cstop offset='100%25' stop-color='%230b0b0c'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E",
       alt: "Foto 1",
     },
     {
-      src: "https://coreva-normal.trae.ai/api/ide/v1/text_to_image?prompt=close-up%20hands%20holding%20with%20wedding%20rings%20style%20jewelry%2C%20romantic%20soft%20lighting%2C%20warm%20tones%2C%20minimal%20background%2C%20film%20photography%20look%2C%20high%20detail%2C%20photoreal&image_size=landscape_16_9",
+      src:
+        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900'%3E%3Cdefs%3E%3CradialGradient id='g' cx='80%25' cy='30%25' r='90%25'%3E%3Cstop offset='0%25' stop-color='%23fde68a' stop-opacity='0.35'/%3E%3Cstop offset='45%25' stop-color='%23f472b6' stop-opacity='0.22'/%3E%3Cstop offset='100%25' stop-color='%230b0b0c'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E",
       alt: "Foto 2",
     },
     {
-      src: "https://coreva-normal.trae.ai/api/ide/v1/text_to_image?prompt=romantic%20street%20night%20walk%2C%20city%20lights%2C%20soft%20rain%20reflections%2C%20cozy%20hoodies%2C%20candid%20moment%2C%20cinematic%2C%20warm%20neon%2C%20film%20grain%2C%20photoreal&image_size=landscape_16_9",
+      src:
+        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900'%3E%3Cdefs%3E%3CradialGradient id='g' cx='45%25' cy='85%25' r='100%25'%3E%3Cstop offset='0%25' stop-color='%23d8b4fe' stop-opacity='0.30'/%3E%3Cstop offset='50%25' stop-color='%23f472b6' stop-opacity='0.18'/%3E%3Cstop offset='100%25' stop-color='%230b0b0c'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E",
       alt: "Foto 3",
     },
     {
-      src: "https://coreva-normal.trae.ai/api/ide/v1/text_to_image?prompt=polaroid%20photo%20collage%20on%20a%20table%2C%20romantic%20memories%2C%20flowers%2C%20handwritten%20notes%2C%20warm%20soft%20light%2C%20high%20detail%2C%20photoreal&image_size=landscape_16_9",
+      src:
+        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900'%3E%3Cdefs%3E%3CradialGradient id='g' cx='20%25' cy='60%25' r='95%25'%3E%3Cstop offset='0%25' stop-color='%23ffe4e6' stop-opacity='0.35'/%3E%3Cstop offset='45%25' stop-color='%23fb7185' stop-opacity='0.16'/%3E%3Cstop offset='100%25' stop-color='%230b0b0c'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E",
       alt: "Foto 4",
     },
   ],
