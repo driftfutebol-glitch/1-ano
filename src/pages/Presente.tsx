@@ -1,7 +1,7 @@
 import Reveal from "@/components/Reveal";
 import { siteContent } from "@/content/siteContent";
 import { cn } from "@/lib/utils";
-import { ArrowLeft, Copy, Gift, Mail, Sparkles } from "lucide-react";
+import { ArrowLeft, Copy, Gift, Mail, MessageCircle, Sparkles } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -17,11 +17,20 @@ function generateKey() {
 
 export default function Presente() {
   const c = siteContent.gift;
+  const owner = siteContent.owner;
   const [email, setEmail] = useState("");
   const [score, setScore] = useState(87);
   const [key, setKey] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const emailOk = useMemo(() => /.+@.+\..+/.test(email.trim()), [email]);
+  const waText = useMemo(() => {
+    if (!key) return "";
+    return `Oi ${owner.displayName}! 💖\n\nMinha chave do presente é: ${key}\nE-mail: ${email}\nDe 0 a 100: ${score}`;
+  }, [email, key, owner.displayName, score]);
+  const waUrl = useMemo(() => {
+    if (!waText) return null;
+    return `https://wa.me/?text=${encodeURIComponent(waText)}`;
+  }, [waText]);
 
   async function copy() {
     if (!key) return;
@@ -143,18 +152,37 @@ export default function Presente() {
                   <div className="mt-5 rounded-3xl border border-white/10 bg-white/5 p-5">
                     <div className="text-xs text-white/70">Sua chave</div>
                     <div className="mt-2 break-all font-mono text-base text-white/95">{key}</div>
-                    <button
-                      type="button"
-                      onClick={copy}
-                      className={cn(
-                        "mt-4 inline-flex items-center gap-2 rounded-2xl border border-white/15 bg-black/25 px-4 py-2 text-sm text-white/90 backdrop-blur transition",
-                        "hover:bg-black/35 hover:border-white/25",
-                        "focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70",
-                      )}
-                    >
-                      <Copy className="h-4 w-4" />
-                      {copied ? "Copiado!" : c.resultCopyLabel}
-                    </button>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <button
+                        type="button"
+                        onClick={copy}
+                        className={cn(
+                          "inline-flex items-center gap-2 rounded-2xl border border-white/15 bg-black/25 px-4 py-2 text-sm text-white/90 backdrop-blur transition",
+                          "hover:bg-black/35 hover:border-white/25",
+                          "focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70",
+                        )}
+                      >
+                        <Copy className="h-4 w-4" />
+                        {copied ? "Copiado!" : c.resultCopyLabel}
+                      </button>
+
+                      {waUrl ? (
+                        <a
+                          href={waUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className={cn(
+                            "inline-flex items-center gap-2 rounded-2xl border border-white/15 bg-gradient-to-r from-rose-400/18 via-amber-200/10 to-rose-400/18 px-4 py-2 text-sm font-semibold text-white shadow-[0_20px_60px_rgba(244,114,182,0.14)] backdrop-blur transition",
+                            "hover:bg-white/10 hover:border-white/25",
+                            "focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70",
+                          )}
+                          aria-label="Enviar chave no WhatsApp"
+                        >
+                          <MessageCircle className="h-4 w-4" />
+                          {c.resultSendLabel}
+                        </a>
+                      ) : null}
+                    </div>
                     <div className="mt-3 text-xs text-white/70">{c.resultHint}</div>
                   </div>
                 ) : (
@@ -170,4 +198,3 @@ export default function Presente() {
     </div>
   );
 }
-

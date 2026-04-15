@@ -39,6 +39,10 @@ export type SiteContent = {
   photos: PhotoItem[];
   music: MusicConfig;
   backgroundAudio?: BackgroundAudioConfig;
+  owner: {
+    displayName: string;
+    adminPassphrase: string;
+  };
   timeline: Array<{
     date: string;
     title: string;
@@ -59,7 +63,15 @@ export type SiteContent = {
     resultTitle: string;
     resultBody: string;
     resultCopyLabel: string;
+    resultSendLabel: string;
     resultHint: string;
+  };
+  roulette: {
+    spins: number;
+    prizes: Array<{
+      title: string;
+      body: string;
+    }>;
   };
 };
 
@@ -102,6 +114,10 @@ export const siteContent: SiteContent = {
     loop: true,
     coverImageUrl: "https://i.ytimg.com/vi/iyJDuJggiEM/hqdefault.jpg",
   },
+  owner: {
+    displayName: "Pedro",
+    adminPassphrase: "pedro-ana-12-04-2024",
+  },
   timeline: [
     {
       date: "12/04/2023",
@@ -134,7 +150,18 @@ export const siteContent: SiteContent = {
     resultTitle: "Chave gerada",
     resultBody: "Copia a chave abaixo e me manda por mensagem.",
     resultCopyLabel: "Copiar chave",
+    resultSendLabel: "Enviar no WhatsApp",
     resultHint: "Depois de copiar, me manda a chave pra eu confirmar o presente.",
+  },
+  roulette: {
+    spins: 3,
+    prizes: [
+      { title: "Beijo + abraço", body: "Um beijo demorado e um abraço apertado." },
+      { title: "Pedido especial", body: "Você pode me pedir qualquer coisa (dentro do possível).", },
+      { title: "Encontro surpresa", body: "Um date surpresa marcado por mim.", },
+      { title: "Mimo", body: "Um mimo simples pra você (do jeitinho que você gosta).", },
+      { title: "Carta extra", body: "Uma carta curtinha escrita só pra você.", },
+    ],
   },
 };
 
