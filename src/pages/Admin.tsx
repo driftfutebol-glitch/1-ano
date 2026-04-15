@@ -16,6 +16,7 @@ function generateToken() {
 export default function Admin() {
   const owner = siteContent.owner;
   const [pass, setPass] = useState("");
+  const [passError, setPassError] = useState<string | null>(null);
   const [unlocked, setUnlocked] = useState(false);
   const [key, setKey] = useState("");
   const [generatedLink, setGeneratedLink] = useState<string | null>(null);
@@ -26,7 +27,11 @@ export default function Admin() {
 
   function unlock(e: React.FormEvent) {
     e.preventDefault();
-    if (!isPassOk) return;
+    if (!isPassOk) {
+      setPassError("Senha incorreta.");
+      return;
+    }
+    setPassError(null);
     setUnlocked(true);
   }
 
@@ -103,15 +108,22 @@ export default function Admin() {
                   <KeyRound className="h-4 w-4 text-white/70" />
                   <input
                     value={pass}
-                    onChange={(e) => setPass(e.target.value)}
+                    onChange={(e) => {
+                      setPass(e.target.value);
+                      setPassError(null);
+                    }}
                     type="password"
                     placeholder="Digite a senha"
                     className="w-full bg-transparent text-sm text-white placeholder:text-white/40 focus:outline-none"
                   />
                 </div>
+                {passError ? <div className="mt-2 text-xs text-rose-200/90">{passError}</div> : null}
+                <div className="mt-2 text-xs text-white/60">
+                  Dica: a senha está em <span className="font-mono text-white/75">siteContent.owner.adminPassphrase</span>.
+                </div>
                 <button
                   type="submit"
-                  disabled={!isPassOk}
+                  disabled={pass.trim().length === 0}
                   className={cn(
                     "mt-4 inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 bg-black/25 px-5 py-3 text-sm font-semibold text-white/90 backdrop-blur transition",
                     "hover:bg-black/35 hover:border-white/25",

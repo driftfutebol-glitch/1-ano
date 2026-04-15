@@ -6,19 +6,16 @@ import { ArrowLeft, Dice5, RotateCw, Sparkles } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-function fnv1a(str: string) {
-  let h = 0x811c9dc5;
-  for (let i = 0; i < str.length; i++) {
-    h ^= str.charCodeAt(i);
-    h = Math.imul(h, 0x01000193);
+function secureRandomInt(maxExclusive: number) {
+  if (maxExclusive <= 1) return 0;
+  const maxUint = 0xffffffff;
+  const limit = maxUint - (maxUint % maxExclusive);
+  const buf = new Uint32Array(1);
+  while (true) {
+    crypto.getRandomValues(buf);
+    const v = buf[0];
+    if (v < limit) return v % maxExclusive;
   }
-  return h >>> 0;
-}
-
-function pickIndex(token: string, spinIndex: number, mod: number) {
-  if (mod <= 0) return 0;
-  const h = fnv1a(`${token}:${spinIndex}`);
-  return h % mod;
 }
 
 type StoredState = {
@@ -67,11 +64,10 @@ export default function Roleta() {
     if (remaining <= 0) return;
 
     const n = prizes.length;
-    const spinIndex = state.used + 1;
-    const resultIndex = pickIndex(token, spinIndex, n);
+    const resultIndex = secureRandomInt(n);
 
     const slice = 360 / Math.max(1, n);
-    const target = 360 * (3 + (spinIndex % 3)) + (n - resultIndex) * slice;
+    const target = 360 * 6 + (n - resultIndex) * slice;
     setSpinning(true);
     setRotation((r) => r + target);
 
@@ -191,4 +187,3 @@ export default function Roleta() {
     </div>
   );
 }
-
